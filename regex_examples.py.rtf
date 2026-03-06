@@ -1,20 +1,25 @@
 import re
 
-print("=== ПРИМЕРЫ ФУНКЦИЙ REGEX ===\n")
-sample_text = "Мой номер: 8-777-123-45-67. Цена: 5000 тенге. Скидка: 15%"
+print("=== ПРАКТИКА 5: ПРИМЕРЫ REGEX (W3SCHOOLS) ===\n")
 
-# 1. re.search() - Находит ТОЛЬКО первое совпадение
-search_result = re.search(r"Цена:\s*(\d+)", sample_text)
-print("1. search() -> Нашли цену:", search_result.group(1))
+text = "The rain in Spain falls mainly in the plain! 123-456. Hello World."
 
-# 2. re.findall() - Находит ВСЕ совпадения в виде списка
-findall_result = re.findall(r"\d+", sample_text)
-print("2. findall() -> Все числа в тексте:", findall_result)
+print("1. search() (найти 'Spain'):", re.search(r"Spain", text).group())
 
-# 3. re.split() - Разрезает строку
-split_result = re.split(r"\.\s*", sample_text)
-print("3. split() -> Разрезали на предложения:\n", split_result)
+print("2. findall() (все 'ain'):", re.findall(r"ain", text))
 
-# 4. re.sub() - Поиск и замена (Substitute)
-sub_result = re.sub(r"\d", "X", sample_text)
-print("4. sub() -> Скрыли все цифры:\n", sub_result)
+print("3. split() (разрезать по пробелам):", re.split(r"\s", "Hello World"))
+
+print("4. sub() (замена пробелов на '_'):", re.sub(r"\s", "_", "Hello World"))
+
+print("5. match() (начинается с 'The'?):", bool(re.match(r"The", text)))
+
+print("6. Метасимволы (^ и $ - начало/конец):", bool(re.search(r"^The.*World\.$", text)))
+
+print("7. Спец. последовательности (\\d - цифры):", re.findall(r"\d", text))
+
+print("8. Sets [a-c] (найти a, b, c):", re.findall(r"[abc]", text))
+
+print("9. Квантификаторы (\\d{3} - три цифры подряд):", re.findall(r"\d{3}", text))
+
+print("10. Флаги (IGNORECASE на 'the'):", re.findall(r"the", text, re.IGNORECASE))
